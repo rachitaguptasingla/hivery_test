@@ -13,13 +13,16 @@ def get_employee_details(company_name):
       cdata = json.load(company_details)
       # Fetch the company index from the cdata(company_details)
       company_id = next((comp['index'] for comp in cdata if comp['company'].casefold() == company_name.casefold()), None)
-      if company_id == None:
-          print(f"Company {company_name} does not exists in the companies.json")
-      else:
-          # Return all the details of the employees based on the company_id
-          total_employees  = [ print(employee) for employee in pdata if employee['company_id'] == company_id ]
-          if len(total_employees) == 0:
-             print(f"No Employees are attached with company : {company_name}:{company_id}")
+      try:
+          if company_id == None:
+              print(f"Company {company_name} does not exists in the companies.json")
+          else:
+              # Return all the details of the employees based on the company_id
+              total_employees  = [ print(employee) for employee in pdata if employee['company_id'] == company_id ]
+              if len(total_employees) == 0:
+                 print(f"No Employees are attached with company : {company_name}:{company_id}")
+      except Exception as e:
+         print(f"Exception of type :{type(e).__name__} occured with arguments {e.args}")
 
 
 ###########################################################################################
@@ -41,13 +44,16 @@ def get_two_employee_details(people1, people2):
        pdata = json.load(people_details)
     people1_data = next((people1_iter for people1_iter in pdata if people1_iter['name'] == people1), None)
     people2_data = next((people2_iter for people2_iter in pdata if people2_iter['name'] == people2), None)
-    if people1_data != None and people2_data != None :
-       print(f"People 1 Details: Name: {people1_data['name']}, Age: {people1_data['age']}, Address: {people1_data['address']}, Phone: {people1_data['phone']}")
-       print(f"People 2 Details: Name: {people2_data['name']}, Age: {people2_data['age']}, Address: {people2_data['address']}, Phone: {people2_data['phone']}")
-       print(f"Common Friends between People1 : {people1} and People2 : {people2} who are alive and have brown eyes are:")
-       common_friends(pdata, people1_data, people2_data)
-    else:
-       print(f"Employees are not valid")
+    try:
+        if people1_data != None and people2_data != None :
+           print(f"People 1 Details: Name: {people1_data['name']}, Age: {people1_data['age']}, Address: {people1_data['address']}, Phone: {people1_data['phone']}")
+           print(f"People 2 Details: Name: {people2_data['name']}, Age: {people2_data['age']}, Address: {people2_data['address']}, Phone: {people2_data['phone']}")
+           print(f"Common Friends between People1 : {people1} and People2 : {people2} who are alive and have brown eyes are:")
+           common_friends(pdata, people1_data, people2_data)
+        else:
+           print(f"Employees are not valid")
+    except Exception as e:
+       print(f"Exception of type :{type(e).__name__} occured with arguments {e.args}")
 
 
 
