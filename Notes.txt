@@ -1,0 +1,25 @@
+Prerequiste to run this program:
+1. Python3 must be installed
+2. Run pip3 install -r requirements.txt
+
+Out of box for this exam:
+1. Fruits and Vegetables are filtered from the exisiting people.json file by find the unique type of fruits and vegetables available in the favouriteFood category using below code 
+      # Load the Employee details using the json serializer
+      with open ('./people.json') as people_details:
+         pdata = json.load(people_details)
+      food = [p['favouriteFood'] for p in pdata]
+      food_flat_list = [item for sublist in food for item in sublist]
+      unique_fav_food = list(set(food_flat_list))
+ 
+
+API Details :
+    # API-1
+    get_employee_details(<company_name>)
+    # API-2
+    get_two_employee_details(<people1>, <people2>)
+    # API-3
+    get_employee_food_details(<people1>)   
+
+Disclaimer: In the main function at the moment all the APIs are called with some arguments, these can be changed based on the testing data
+Code can be easily runnable using python3 hivery_exam.py 
+   
